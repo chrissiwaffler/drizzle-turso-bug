@@ -1,0 +1,369 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "5",
+  "dialect": "sqlite",
+  "tables": {
+    "platform_history": {
+      "name": "platform_history",
+      "columns": {
+        "timestamp": {
+          "autoincrement": false,
+          "name": "timestamp",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "apy": {
+          "autoincrement": false,
+          "name": "apy",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "total_value_locked": {
+          "autoincrement": false,
+          "name": "total_value_locked",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "tokens": {
+      "name": "tokens",
+      "columns": {
+        "pid": {
+          "autoincrement": false,
+          "name": "pid",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "asset_name": {
+          "autoincrement": false,
+          "name": "asset_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "symbol": {
+          "autoincrement": false,
+          "name": "symbol",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "icon": {
+          "autoincrement": false,
+          "name": "icon",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "projects": {
+      "name": "projects",
+      "columns": {
+        "uuid": {
+          "autoincrement": false,
+          "name": "uuid",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "label": {
+          "autoincrement": false,
+          "name": "label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "logo": {
+          "autoincrement": false,
+          "name": "logo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "autoincrement": false,
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "link": {
+          "autoincrement": false,
+          "name": "link",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "vaults": {
+      "name": "vaults",
+      "columns": {
+        "uuid": {
+          "autoincrement": false,
+          "name": "uuid",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "icon": {
+          "autoincrement": false,
+          "name": "icon",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "label": {
+          "autoincrement": false,
+          "name": "label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "risk": {
+          "autoincrement": false,
+          "name": "risk",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "vaults_projects": {
+      "name": "vaults_projects",
+      "columns": {
+        "uuid": {
+          "autoincrement": false,
+          "name": "uuid",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "vault_uuid": {
+          "autoincrement": false,
+          "name": "vault_uuid",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "project_uuid": {
+          "autoincrement": false,
+          "name": "project_uuid",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "percentage": {
+          "autoincrement": false,
+          "name": "percentage",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "vaults_projects_project_uuid_projects_uuid_fk": {
+          "name": "vaults_projects_project_uuid_projects_uuid_fk",
+          "tableFrom": "vaults_projects",
+          "tableTo": "projects",
+          "columnsFrom": [
+            "project_uuid"
+          ],
+          "columnsTo": [
+            "uuid"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "vaults_projects_vault_uuid_vaults_uuid_fk": {
+          "name": "vaults_projects_vault_uuid_vaults_uuid_fk",
+          "tableFrom": "vaults_projects",
+          "tableTo": "vaults",
+          "columnsFrom": [
+            "vault_uuid"
+          ],
+          "columnsTo": [
+            "uuid"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "vaults_tokens": {
+      "name": "vaults_tokens",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "vault_uuid": {
+          "autoincrement": false,
+          "name": "vault_uuid",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "token_pid": {
+          "autoincrement": false,
+          "name": "token_pid",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "percentage": {
+          "autoincrement": false,
+          "name": "percentage",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "vaults_tokens_token_pid_tokens_pid_fk": {
+          "name": "vaults_tokens_token_pid_tokens_pid_fk",
+          "tableFrom": "vaults_tokens",
+          "tableTo": "tokens",
+          "columnsFrom": [
+            "token_pid"
+          ],
+          "columnsTo": [
+            "pid"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "vaults_tokens_vault_uuid_vaults_uuid_fk": {
+          "name": "vaults_tokens_vault_uuid_vaults_uuid_fk",
+          "tableFrom": "vaults_tokens",
+          "tableTo": "vaults",
+          "columnsFrom": [
+            "vault_uuid"
+          ],
+          "columnsTo": [
+            "uuid"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "users_vaults": {
+      "name": "users_vaults",
+      "columns": {
+        "uuid": {
+          "autoincrement": false,
+          "name": "uuid",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wallet_address": {
+          "autoincrement": false,
+          "name": "wallet_address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "vault_id": {
+          "autoincrement": false,
+          "name": "vault_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "deposited_amount": {
+          "autoincrement": false,
+          "name": "deposited_amount",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "deposit_time": {
+          "autoincrement": false,
+          "name": "deposit_time",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "withdraw_time": {
+          "autoincrement": false,
+          "name": "withdraw_time",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "will_earn": {
+          "autoincrement": false,
+          "name": "will_earn",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "has_earned": {
+          "autoincrement": false,
+          "name": "has_earned",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "users_vaults_vault_id_vaults_uuid_fk": {
+          "name": "users_vaults_vault_id_vaults_uuid_fk",
+          "tableFrom": "users_vaults",
+          "tableTo": "vaults",
+          "columnsFrom": [
+            "vault_id"
+          ],
+          "columnsTo": [
+            "uuid"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}
